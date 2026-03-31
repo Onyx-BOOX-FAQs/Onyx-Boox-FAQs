@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOOX FAQs</title>
+  <title>BOOX FAQ</title>
   <style>
     * {
       margin: 0;
@@ -60,7 +60,7 @@
       margin-bottom: 14px;
       overflow: hidden;
       box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease;
+      transition: transform 0.4s ease;
     }
 
     .faq-item:hover {
@@ -133,6 +133,27 @@
         padding: 0 18px;
       }
     }
+    .feedback-section textarea {
+   width: 100%;
+   max-width: 700px;
+   min-height: 140px;
+   padding: 16px;
+   border: 1px solid #d1d5db;
+   border-radius: 12px;
+   resize: vertical;
+   font-size: 1rem;
+   margin-bottom: 20px;
+   outline: none;
+   .feedback-section textarea:focus {
+   border-color: #2563eb;
+   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+   }
+   #feedbackStatus {
+   margin-top: 15px;
+   color: #2563eb;
+   font-weight: 500;
+   }
+}
   </style>
 </head>
 <body>
@@ -147,23 +168,23 @@
       <h2>General Questions</h2>
 
       <div class="faq-item">
-        <button class="faq-question">What is ePaper?</button>
+        <button class="faq-question">What is the difference between ePaper and traditional screens?</button>
         <div class="faq-answer">
-          <p>ePaper, or electronic paper, is a display technology designed to mimic the appearance of real ink on paper. It reduces eye strain and is easier to read for long periods compared to traditional screens.</p>
+          <p>E-paper (often called E-Ink) uses tiny microcapsules with black and white particles that physically move to form text and images. Once the page is displayed, it doesn’t need power to stay visible. While LCD and OLED screens emit light directly toward your eyes. Pixels refresh many times per second to create smooth motion and color.</p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question">What is Onyx?</button>
+        <button class="faq-question">What is Onyx Boox?</button>
         <div class="faq-answer">
           <p>Onyx is the company behind BOOX devices. They specialize in E-Ink tablets and eReaders designed for reading, note-taking, and productivity.</p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question">Which is better, Onyx or Kindle?</button>
+        <button class="faq-question">What's the difference between Boox, Kindle, and other ePaper products?</button>
         <div class="faq-answer">
-          <p>Kindle is mainly focused on reading books from Amazon, while BOOX devices offer more flexibility with Android apps, note-taking, file support, and productivity features.</p>
+          <p>Other ePaper products are primarily focused only on reading, sometimes locked behind a proprietary ecosystem, while BOOX devices offer more flexibility with Android apps, note-taking, file support, and productivity features.</p>
         </div>
       </div>
 
@@ -189,7 +210,7 @@
       <div class="faq-item">
         <button class="faq-question">Can I install apps like Spotify, YouTube, or Apple Music?</button>
         <div class="faq-answer">
-          <p>Yes. Most BOOX devices support Google Play Store, so you can install compatible Android apps.</p>
+          <p>Yes. Most BOOX devices support Google Play Store, so you can install compatible Android apps like Spotify, YouTube, or Apple Music.</p>
         </div>
       </div>
 
@@ -208,7 +229,7 @@
       </div>
 
       <div class="faq-item">
-        <button class="faq-question">Can I install Kindle?</button>
+        <button class="faq-question">Can I install Kindle app on Boox?</button>
         <div class="faq-answer">
           <p>Yes. You can install the Kindle app through Google Play and read your Kindle books on BOOX devices.</p>
         </div>
@@ -222,6 +243,7 @@
       <div class="faq-item">
         <button class="faq-question">How can I transfer books or files to my BOOX device?</button>
         <div class="faq-answer">
+          <p>Yes, you can transfer files to your Boox device through these methods:</p>
           <ul>
             <li>Email</li>
             <li>Google Drive</li>
@@ -242,7 +264,7 @@
       <div class="faq-item">
         <button class="faq-question">Can I read manga or manhwa on BOOX devices?</button>
         <div class="faq-answer">
-          <p>Yes. BOOX devices support various formats suitable for manga and manhwa reading.</p>
+          <p>Yes. BOOX devices support various formats suitable for manga and manhwa reading. Monochromatic boox are recommended for reading manga while colored ePapers are much preffered for Manwha content.</p>
         </div>
       </div>
     </div>
@@ -287,7 +309,7 @@
       <div class="faq-item">
         <button class="faq-question">Do BOOX devices support SIM cards?</button>
         <div class="faq-answer">
-          <p>No. Current BOOX devices do not support SIM cards and connect through Wi-Fi only.</p>
+          <p>As of Early 2026, only the Palma 2 pro support physical SIM cards. Other BOOX units are wifi-used only</p>
         </div>
       </div>
 
@@ -301,7 +323,7 @@
       <div class="faq-item">
         <button class="faq-question">Do BOOX devices have a desktop mode?</button>
         <div class="faq-answer">
-          <p>BOOX devices operate using an Android interface designed for reading and productivity.</p>
+          <p>Boox devices do not have a built-in "desktop mode" in the same way a Samsung DeX or Windows tablet does, but they offer several functionalities that allow them to function as a desktop-like E-ink display or run desktop-style apps. </p>
         </div>
       </div>
     </div>
@@ -327,7 +349,7 @@
       <div class="faq-item">
         <button class="faq-question">Is there a service center in the Philippines?</button>
         <div class="faq-answer">
-          <p>For technical concerns or repair inquiries, contact: service@onyx-international.com</p>
+          <p>There is no local service center in the Philippines.For technical concerns or repair inquiries, contact: service@onyx-international.com</p>
         </div>
       </div>
     </div>
@@ -339,7 +361,7 @@
       <div class="faq-item">
         <button class="faq-question">Are BOOX devices water resistant?</button>
         <div class="faq-answer">
-          <p>No. BOOX devices are not waterproof or water resistant.</p>
+          <p>No. BOOX devices are not waterproof and dust proof resistant.</p>
         </div>
       </div>
 
@@ -363,5 +385,43 @@
       });
     });
   </script>
+  <section class="feedback-section">
+    <h2>Have a Question or Suggestion?</h2>
+    <p>Got questions not included in FAQ? Send it to us. Help us serve you better.</p>
+    <textarea
+    id="feedbackMessage"
+    placeholder="Type your question or suggestion here..."
+  ></textarea>
+  <button onclick="sendFeedback()" class="feedback-button">
+    Send
+  </button>
+   <p id="feedbackStatus"></p>
+  </section>
+  <script>
+async function sendFeedback() {
+  const message = document.getElementById("feedbackMessage").value;
+  const status = document.getElementById("feedbackStatus");
+  if (message.trim() === "") {
+    status.textContent = "Please enter a question or suggestion first.";
+    return;
+  }
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbxdx5XwDkyzwl6UmZkdtrYWOyHemDBbBfsGkhffeqUZfB_YN7nbKhU0OJSo192y6GDR/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: message
+      })
+    });
+    status.textContent = "Thank you! Your suggestion has been sent.";
+    document.getElementById("feedbackMessage").value = "";
+  } catch (error) {
+    status.textContent = "Something went wrong. Please try again.";
+  }
+}
+</script>
 </body>
 </html>
