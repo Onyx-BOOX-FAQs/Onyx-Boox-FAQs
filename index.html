@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOOX FAQ</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f3f6fb, #dfe9f3);
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .faq-container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .faq-header h1 {
+      font-size: 2.8rem;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+
+    .faq-header p {
+      color: #6b7280;
+      font-size: 1rem;
+    }
+
+    .faq-category {
+      margin-bottom: 30px;
+    }
+
+    .faq-category h2 {
+      background: #1f2937;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      text-align: left;
+      padding: 18px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1f2937;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: "+";
+      font-size: 1.4rem;
+      color: #2563eb;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: "−";
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 22px;
+      background: #f9fafb;
+    }
+
+    .faq-answer p,
+    .faq-answer ul {
+      padding-bottom: 18px;
+      color: #4b5563;
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .faq-answer ul {
+      padding-left: 20px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding-top: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .faq-header h1 {
+        font-size: 2rem;
+      }
+
+      .faq-question {
+        font-size: 0.95rem;
+        padding: 16px 18px;
+      }
+
+      .faq-answer {
+        padding: 0 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-container">
+    <div class="faq-header">
+      <h1>BOOX Frequently Asked Questions</h1>
+      <p>Everything you need to know about BOOX devices, accessories, and features.</p>
+    </div>
+
+    <!-- General Questions -->
+    <div class="faq-category">
+      <h2>General Questions</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">What is ePaper?</button>
+        <div class="faq-answer">
+          <p>ePaper, or electronic paper, is a display technology designed to mimic the appearance of real ink on paper. It reduces eye strain and is easier to read for long periods compared to traditional screens.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">What is Onyx?</button>
+        <div class="faq-answer">
+          <p>Onyx is the company behind BOOX devices. They specialize in E-Ink tablets and eReaders designed for reading, note-taking, and productivity.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Which is better, Onyx or Kindle?</button>
+        <div class="faq-answer">
+          <p>Kindle is mainly focused on reading books from Amazon, while BOOX devices offer more flexibility with Android apps, note-taking, file support, and productivity features.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">How is BOOX different from a tablet or smartphone?</button>
+        <div class="faq-answer">
+          <p>BOOX devices use E-Ink screens, which are easier on the eyes and provide better battery life. They are designed for reading, writing, and focused productivity rather than gaming or video-heavy use.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Device Features -->
+    <div class="faq-category">
+      <h2>Device Features</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Can BOOX devices browse the internet?</button>
+        <div class="faq-answer">
+          <p>Yes. BOOX devices have a built-in web browser and can access websites using Wi-Fi.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can I install apps like Spotify, YouTube, or Apple Music?</button>
+        <div class="faq-answer">
+          <p>Yes. Most BOOX devices support Google Play Store, so you can install compatible Android apps.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can I download Google Chrome?</button>
+        <div class="faq-answer">
+          <p>Yes. Chrome and other supported apps can be downloaded through the Google Play Store.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can BOOX devices read image-heavy textbooks?</button>
+        <div class="faq-answer">
+          <p>Yes. BOOX devices can open PDFs and image-heavy textbooks. Performance may vary depending on the file size and model.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can I install Kindle?</button>
+        <div class="faq-answer">
+          <p>Yes. You can install the Kindle app through Google Play and read your Kindle books on BOOX devices.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- File Transfer -->
+    <div class="faq-category">
+      <h2>File Transfer & Content</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">How can I transfer books or files to my BOOX device?</button>
+        <div class="faq-answer">
+          <ul>
+            <li>Email</li>
+            <li>Google Drive</li>
+            <li>USB connection</li>
+            <li>Cloud storage</li>
+            <li>Direct download from the internet</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can BOOX devices open files from Google Drive?</button>
+        <div class="faq-answer">
+          <p>Yes. You can access and download files from Google Drive.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can I read manga or manhwa on BOOX devices?</button>
+        <div class="faq-answer">
+          <p>Yes. BOOX devices support various formats suitable for manga and manhwa reading.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stylus -->
+    <div class="faq-category">
+      <h2>Stylus & Note-Taking</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Can I write notes on BOOX devices?</button>
+        <div class="faq-answer">
+          <p>Yes. Many BOOX tablets support handwriting notes using a stylus.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can handwritten notes be converted into typed text?</button>
+        <div class="faq-answer">
+          <p>Yes. BOOX devices support handwriting-to-text conversion.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Does BOOX Palma support stylus writing?</button>
+        <div class="faq-answer">
+          <p>No. BOOX Palma is an e-reader and does not support stylus input.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Are BOOX pens compatible with different models?</button>
+        <div class="faq-answer">
+          <p>Some BOOX styluses are cross-compatible, but compatibility depends on the specific model.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connectivity -->
+    <div class="faq-category">
+      <h2>Connectivity</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Do BOOX devices support SIM cards?</button>
+        <div class="faq-answer">
+          <p>No. Current BOOX devices do not support SIM cards and connect through Wi-Fi only.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Can I use other Bluetooth keyboards?</button>
+        <div class="faq-answer">
+          <p>Yes. BOOX devices support Bluetooth keyboards.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Do BOOX devices have a desktop mode?</button>
+        <div class="faq-answer">
+          <p>BOOX devices operate using an Android interface designed for reading and productivity.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warranty -->
+    <div class="faq-category">
+      <h2>Warranty & Returns</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Is there a warranty for BOOX devices?</button>
+        <div class="faq-answer">
+          <p>Yes. BOOX devices come with a 1-year international warranty covering factory defects.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">What if my device arrives defective?</button>
+        <div class="faq-answer">
+          <p>There is a 7-day replacement policy for factory defects, excluding minor screen issues.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Is there a service center in the Philippines?</button>
+        <div class="faq-answer">
+          <p>For technical concerns or repair inquiries, contact: service@onyx-international.com</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hardware -->
+    <div class="faq-category">
+      <h2>Hardware</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Are BOOX devices water resistant?</button>
+        <div class="faq-answer">
+          <p>No. BOOX devices are not waterproof or water resistant.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Does the device come with a screen protector?</button>
+        <div class="faq-answer">
+          <p>Some models may include a pre-applied film. Additional screen protectors are generally not recommended as they may affect the E-Ink writing and viewing experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+      const question = item.querySelector(".faq-question");
+
+      question.addEventListener("click", () => {
+        item.classList.toggle("active");
+      });
+    });
+  </script>
+</body>
+</html>
