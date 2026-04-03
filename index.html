@@ -104,12 +104,52 @@
       padding: 14px;
       backdrop-filter: blur(16px);
     }
+    .toolbar {
+  background: rgba(255,255,255,0.45);
+  transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.toolbar:hover,
+.toolbar:focus-within {
+  background: rgba(255,255,255,0.96);
+}
 
     .toolbar-row {
       display: flex;
       gap: 10px;
       align-items: stretch;
     }
+    /* COLLAPSIBLE SEARCH HEADER */
+
+.toolbar-toggle {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+
+  .toolbar-wrap.collapsed .toolbar {
+    display: none;
+  }
+
+  .toolbar-wrap.collapsed .toolbar-toggle {
+    display: flex;
+  }
+
+  .toolbar-wrap {
+    transition: all 0.25s ease;
+  }
+
+}
 
     .search-wrap {
       position: relative;
@@ -635,6 +675,22 @@
             <button id="clearInputBtn" class="clear-input-btn" type="button" aria-label="Clear search">✕</button>
             <div id="searchSuggestions" class="suggestions"></div>
           </div>
+          <div class="toolbar-wrap" id="toolbarWrap">
+
+  <!-- NEW: collapsible header -->
+  <div class="toolbar-toggle" id="toolbarToggle">
+    <span>Search FAQs</span>
+    <span id="toolbarArrow">▲</span>
+  </div>
+
+  <!-- YOUR EXISTING TOOLBAR (UNCHANGED INSIDE) -->
+  <div class="toolbar" id="toolbar">
+    <!-- search input -->
+    <!-- buttons -->
+    <!-- suggestions -->
+  </div>
+
+</div>
 
           <div class="toolbar-actions">
             <button id="showAllBtn" class="btn btn-secondary" type="button">Show All</button>
@@ -1040,6 +1096,37 @@
       const feedbackStatus = document.getElementById("feedbackStatus");
       const sendButton = document.getElementById("sendButton");
       const backToTop = document.getElementById("backToTop");
+      const toolbarWrap = document.getElementById("toolbarWrap");
+const toolbarToggle = document.getElementById("toolbarToggle");
+const toolbarArrow = document.getElementById("toolbarArrow");
+
+/* TOGGLE MANUALLY */
+toolbarToggle.addEventListener("click", () => {
+  toolbarWrap.classList.toggle("collapsed");
+
+  if (toolbarWrap.classList.contains("collapsed")) {
+    toolbarArrow.textContent = "▼";
+  } else {
+    toolbarArrow.textContent = "▲";
+  }
+});
+
+/* AUTO COLLAPSE ON SCROLL (MOBILE ONLY) */
+let lastScroll = 0;
+
+window.addEventListener("scroll", () => {
+  if (window.innerWidth > 768) return;
+
+  const currentScroll = window.scrollY;
+
+  if (currentScroll > lastScroll && currentScroll > 120) {
+    // scrolling down → collapse
+    toolbarWrap.classList.add("collapsed");
+    toolbarArrow.textContent = "▼";
+  }
+
+  lastScroll = currentScroll;
+});
 
       let isSending = false;
 
