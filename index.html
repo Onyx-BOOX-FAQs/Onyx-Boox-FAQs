@@ -1,174 +1,267 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOOX FAQ</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
-    body { background: linear-gradient(135deg, #f3f6fb, #dfe9f3); padding: 40px 20px; color: #333; }
-    .faq-container { max-width: 1000px; margin: auto; }
-    .faq-header { text-align: center; margin-bottom: 40px; }
-    .faq-header h1 { font-size: 2.8rem; color: #1f2937; margin-bottom: 10px; cursor: pointer; }
-    .faq-header p { color: #6b7280; font-size: 1rem; }
-    .faq-category { margin-bottom: 30px; }
-    .faq-category h2 {
-      background: #1f2937; color: white; padding: 14px 20px; border-radius: 12px;
-      margin-bottom: 15px; font-size: 1.2rem; letter-spacing: 0.5px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    }
-    .faq-item {
-      background: white; border-radius: 14px; margin-bottom: 14px; overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08); transition: transform 0.4s ease;
-    }
-    .faq-item:hover { transform: translateY(-2px); }
-    .faq-question {
-      width: 100%; background: none; border: none; outline: none; text-align: left;
-      padding: 18px 22px; font-size: 1rem; font-weight: 600; color: #1f2937;
-      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-    }
-    .faq-question::after { content: "+"; font-size: 1.4rem; color: #2563eb; transition: transform 0.3s ease; }
-    .faq-item.active .faq-question::after { content: "−"; }
-    .faq-answer {
-      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
-      padding: 0 22px; background: #f9fafb;
-    }
-    .faq-answer p, .faq-answer ul { padding-bottom: 18px; color: #4b5563; line-height: 1.7; font-size: 0.96rem; }
-    .faq-answer ul { padding-left: 20px; }
-    .faq-item.active .faq-answer { max-height: 500px; padding-top: 5px; }
-    @media (max-width: 768px) {
-      .faq-header h1 { font-size: 2rem; }
-      .faq-question { font-size: 0.95rem; padding: 16px 18px; }
-      .faq-answer { padding: 0 18px; }
-    }
-    .faq-search { position: relative; max-width: 500px; margin: 20px auto; }
-    .faq-search input {
-      width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #d1d5db;
-    }
-    .suggestions {
-      position: absolute;
-      width: 100%;
-      background: white;
-      border-radius: 10px;
-      margin-top: 5px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      z-index: 100;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOOX FAQ</title>
 
-      max-height: 200px;   /* limits height */
-      overflow-y: auto;    /* enables vertical scroll */
-    }
-    .suggestions div { padding: 10px 14px; cursor: pointer; }
-    .suggestions div:hover { background: #f3f4f6; }
+<style>
 
-    /* Floating feedback section */
-    .feedback-section {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 320px;
-      max-width: 90%;
-      background: white;
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-      z-index: 200;
-    }
-    .feedback-section textarea {
-      width: 100%; min-height: 120px; padding: 12px;
-      border: 1px solid #d1d5db; border-radius: 12px; resize: vertical; font-size: 1rem;
-      margin-bottom: 12px; outline: none;
-    }
-    .feedback-section textarea:focus {
-      border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
-    }
-    #feedbackStatus { margin-top: 8px; color: #2563eb; font-weight: 500; font-size: 0.95rem; }
-
-    @media (max-width: 500px) {
-      .feedback-section { width: 90%; right: 5%; bottom: 10px; }
-    }
-.floating-feedback {
-  position: fixed;
-  right: 20px;
-  bottom: 50px;
-  width: 300px;
-  max-width: 90%;
-  background: white;
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-  z-index: 9999;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.feedback-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background: #2563eb;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
+body{
+background:linear-gradient(135deg,#f3f6fb,#dfe9f3);
+padding:20px;
+color:#333;
 }
 
-.feedback-header .arrow {
-  transition: transform 0.3s ease;
+/* HEADER */
+
+.faq-header{
+text-align:center;
+margin-bottom:25px;
 }
 
-.feedback-content {
-  display: none;
-  padding: 10px 14px;
+.faq-header h1{
+font-size:2.1rem;
+color:#1f2937;
+margin-bottom:6px;
+cursor:pointer;
 }
 
-.feedback-content textarea {
-  width: 100%;
-  min-height: 100px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  padding: 10px;
-  resize: vertical;
+.faq-header p{
+color:#6b7280;
+font-size:0.95rem;
 }
 
-.feedback-content button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+/* SEARCH */
+
+.faq-search{
+position:sticky;
+top:10px;
+z-index:10;
+max-width:520px;
+margin:18px auto;
 }
 
-.feedback-content p {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #2563eb;
+.faq-search input{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #d1d5db;
+font-size:0.95rem;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
 }
 
-/* Open state */
-.floating-feedback.open .feedback-content {
-  display: block;
+/* SUGGESTIONS */
+
+.suggestions{
+position:absolute;
+width:100%;
+background:white;
+border-radius:12px;
+margin-top:6px;
+box-shadow:0 6px 20px rgba(0,0,0,0.15);
+max-height:220px;
+overflow-y:auto;
 }
 
-.floating-feedback.open .arrow {
-  transform: rotate(180deg);
+.suggestions div{
+padding:12px;
+cursor:pointer;
+font-size:0.92rem;
 }
-  </style>
+
+.suggestions div:hover{
+background:#f3f4f6;
+}
+
+/* CATEGORY */
+
+.faq-category{
+max-width:900px;
+margin:auto;
+margin-bottom:30px;
+}
+
+.faq-category h2{
+background:#1f2937;
+color:white;
+padding:12px 16px;
+border-radius:10px;
+margin-bottom:14px;
+font-size:1rem;
+}
+
+/* FAQ ITEM */
+
+.faq-item{
+background:white;
+border-radius:12px;
+margin-bottom:12px;
+overflow:hidden;
+box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+
+.faq-question{
+width:100%;
+background:none;
+border:none;
+text-align:left;
+padding:18px;
+font-size:0.95rem;
+font-weight:600;
+cursor:pointer;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.faq-question::after{
+content:"+";
+font-size:1.3rem;
+color:#2563eb;
+}
+
+.faq-item.active .faq-question::after{
+content:"−";
+}
+
+/* ANSWER */
+
+.faq-answer{
+max-height:0;
+overflow:hidden;
+transition:max-height 0.35s ease,padding 0.3s ease;
+background:#f9fafb;
+padding:0 18px;
+}
+
+.faq-answer p,
+.faq-answer ul{
+font-size:0.9rem;
+line-height:1.6;
+color:#4b5563;
+padding-bottom:14px;
+}
+
+.faq-answer ul{
+padding-left:18px;
+}
+
+.faq-item.active .faq-answer{
+max-height:400px;
+padding-top:8px;
+}
+
+/* FLOATING FEEDBACK */
+
+.floating-feedback{
+position:fixed;
+right:18px;
+bottom:18px;
+width:300px;
+max-width:92%;
+background:white;
+border-radius:14px;
+box-shadow:0 8px 24px rgba(0,0,0,0.2);
+overflow:hidden;
+z-index:9999;
+}
+
+.feedback-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 16px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+font-weight:600;
+}
+
+.feedback-content{
+display:none;
+padding:14px;
+}
+
+.feedback-content textarea{
+width:100%;
+min-height:100px;
+border-radius:8px;
+border:1px solid #d1d5db;
+padding:10px;
+resize:vertical;
+}
+
+.feedback-content button{
+margin-top:10px;
+padding:10px 12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+width:100%;
+}
+
+.feedback-content p{
+margin-top:8px;
+font-size:0.9rem;
+color:#2563eb;
+}
+
+.floating-feedback.open .feedback-content{
+display:block;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+body{
+padding:15px;
+}
+
+.faq-header h1{
+font-size:1.7rem;
+}
+
+.faq-question{
+font-size:0.92rem;
+padding:16px;
+}
+
+.floating-feedback{
+right:10px;
+bottom:10px;
+width:260px;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
-    <div class="faq-header">
-      <h1 id="faqTitle">BOOX Frequently Asked Questions</h1>
-      <p>Everything you need to know about BOOX devices, accessories, and features.</p>
-      <div class="faq-search">
-  <input
-    type="text"
-    id="faqSearch"
-    placeholder="Search questions..."
-  />
-  <div id="searchSuggestions" class="suggestions"></div>
+
+<div class="faq-header">
+<h1 id="faqTitle">BOOX Frequently Asked Questions</h1>
+<p>Everything you need to know about BOOX devices.</p>
+
+<div class="faq-search">
+<input id="faqSearch" placeholder="Search questions...">
+<div id="searchSuggestions" class="suggestions"></div>
 </div>
-    </div>
+
+</div>
 
     <!-- General Questions -->
     <div class="faq-category">
@@ -380,105 +473,160 @@
   </div>
 </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const faqItems = document.querySelectorAll(".faq-item");
-      const suggestionBox = document.getElementById("searchSuggestions");
-      const searchInput = document.getElementById("faqSearch");
-      const faqTitle = document.getElementById("faqTitle");
-const feedbackHeader = document.getElementById("feedbackHeader");
-const floatingFeedback = document.getElementById("floatingFeedback");
+<!-- FLOATING QUESTION BOX -->
 
-feedbackHeader.addEventListener("click", () => {
-  floatingFeedback.classList.toggle("open");
-});
-      // Toggle FAQ answers
-      faqItems.forEach(item => {
-        const question = item.querySelector(".faq-question");
-        question.addEventListener("click", () => item.classList.toggle("active"));
-      });
+<div class="floating-feedback" id="floatingFeedback">
 
-      // Search suggestions
-      searchInput.addEventListener("keyup", () => {
-        const input = searchInput.value.toLowerCase();
-        suggestionBox.innerHTML = "";
-        if (!input) return;
-        faqItems.forEach((item, index) => {
-          const questionText = item.querySelector(".faq-question").textContent.toLowerCase();
-          if (questionText.includes(input)) {
-            const suggestion = document.createElement("div");
-            suggestion.textContent = item.querySelector(".faq-question").textContent;
-            suggestion.onclick = () => selectResult(index);
-            suggestionBox.appendChild(suggestion);
-          }
-        });
-      });
-
-      function selectResult(index) {
-        suggestionBox.innerHTML = "";
-        searchInput.value = "";
-        faqItems.forEach((item, i) => {
-          item.style.display = (i === index) ? "block" : "none";
-          item.classList.toggle("active", i === index);
-        });
-        document.querySelectorAll(".faq-category h2").forEach(h => h.style.display = "none");
-        faqItems[index].scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-
-      // Return to full FAQ on title click
-      faqTitle.addEventListener("click", () => {
-        faqItems.forEach(item => {
-          item.style.display = "block";
-          item.classList.remove("active");
-        });
-        document.querySelectorAll(".faq-category h2").forEach(h => h.style.display = "block");
-        searchInput.value = "";
-        suggestionBox.innerHTML = "";
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      // Feedback sending
-      let isSending = false;
-      document.getElementById("sendButton").addEventListener("click", async () => {
-        if (isSending) return;
-        const message = document.getElementById("feedbackMessage").value.trim();
-        const status = document.getElementById("feedbackStatus");
-        const button = document.getElementById("sendButton");
-
-        if (!message) { status.textContent = "Please enter a question or suggestion first."; return; }
-
-        isSending = true;
-        button.disabled = true;
-        button.textContent = "Sending...";
-        status.textContent = "";
-
-        try {
-          await fetch("https://script.google.com/macros/s/AKfycbxdx5XwDkyzwl6UmZkdtrYWOyHemDBbBfsGkhffeqUZfB_YN7nbKhU0OJSo192y6GDR/exec", {
-            method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message })
-          });
-          status.textContent = "Thank you! Your suggestion has been sent.";
-          document.getElementById("feedbackMessage").value = "";
-        } catch (err) {
-          status.textContent = "Something went wrong. Please try again.";
-        } finally {
-          isSending = false;
-          button.disabled = false;
-          button.textContent = "Send";
-        }
-      });
-    });
-  </script>
-  <div class="floating-feedback" id="floatingFeedback">
-  <div class="feedback-header" id="feedbackHeader">
-    <span>Ask a Question</span>
-    <span class="arrow">&#9660;</span>
-  </div>
-  <div class="feedback-content">
-    <textarea id="feedbackMessage" placeholder="Type your question or suggestion..."></textarea>
-    <button id="sendButton">Send</button>
-    <p id="feedbackStatus"></p>
-  </div>
+<div class="feedback-header" id="feedbackHeader">
+<span>Ask a Question</span>
+<span>▼</span>
 </div>
+
+<div class="feedback-content">
+
+<textarea id="feedbackMessage" placeholder="Type your question or suggestion..."></textarea>
+
+<button id="sendButton">Send</button>
+
+<p id="feedbackStatus"></p>
+
+</div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+
+const faqItems=document.querySelectorAll(".faq-item");
+const searchInput=document.getElementById("faqSearch");
+const suggestionBox=document.getElementById("searchSuggestions");
+
+faqItems.forEach(item=>{
+const question=item.querySelector(".faq-question");
+
+question.addEventListener("click",()=>{
+
+faqItems.forEach(i=>{
+if(i!==item) i.classList.remove("active");
+});
+
+item.classList.toggle("active");
+
+});
+});
+
+/* SEARCH */
+
+searchInput.addEventListener("keyup",()=>{
+
+const input=searchInput.value.toLowerCase();
+
+suggestionBox.innerHTML="";
+
+if(!input) return;
+
+faqItems.forEach((item,index)=>{
+
+const text=item.querySelector(".faq-question").textContent.toLowerCase();
+
+if(text.includes(input)){
+
+const div=document.createElement("div");
+
+div.textContent=item.querySelector(".faq-question").textContent;
+
+div.onclick=()=>selectResult(index);
+
+suggestionBox.appendChild(div);
+
+}
+
+});
+
+});
+
+function selectResult(index){
+
+suggestionBox.innerHTML="";
+searchInput.value="";
+
+faqItems.forEach((item,i)=>{
+
+item.style.display=(i===index)?"block":"none";
+item.classList.toggle("active",i===index);
+
+});
+
+faqItems[index].scrollIntoView({behavior:"smooth",block:"center"});
+
+}
+
+/* FLOATING BOX */
+
+const header=document.getElementById("feedbackHeader");
+const box=document.getElementById("floatingFeedback");
+
+header.onclick=()=>{
+box.classList.toggle("open");
+};
+
+/* SEND MESSAGE */
+
+let isSending=false;
+
+document.getElementById("sendButton").addEventListener("click",async()=>{
+
+if(isSending) return;
+
+const message=document.getElementById("feedbackMessage").value.trim();
+const status=document.getElementById("feedbackStatus");
+const button=document.getElementById("sendButton");
+
+if(!message){
+status.textContent="Please enter a question first.";
+return;
+}
+
+isSending=true;
+
+button.disabled=true;
+button.textContent="Sending...";
+status.textContent="";
+
+try{
+
+await fetch("https://script.google.com/macros/s/AKfycbxdx5XwDkyzwl6UmZkdtrYWOyHemDBbBfsGkhffeqUZfB_YN7nbKhU0OJSo192y6GDR/exec",{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({message})
+});
+
+status.textContent="Thank you! Your message has been sent.";
+document.getElementById("feedbackMessage").value="";
+
+}
+catch{
+
+status.textContent="Something went wrong. Try again.";
+
+}
+finally{
+
+isSending=false;
+button.disabled=false;
+button.textContent="Send";
+
+}
+
+});
+
+});
+
+</script>
+
 </body>
 </html>
