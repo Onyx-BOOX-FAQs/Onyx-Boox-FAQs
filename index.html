@@ -137,6 +137,7 @@
     .search-wrap {
       position: relative;
       flex: 1;
+      min-width: 0;
     }
 
     .search-wrap input {
@@ -193,6 +194,9 @@
       white-space: nowrap;
       font-size: 0.85rem;
       transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn-secondary {
@@ -394,7 +398,6 @@
     }
 
     .faq-item.active .faq-answer {
-      max-height: 1200px;
       padding-top: 2px;
     }
 
@@ -530,6 +533,152 @@
       line-height: 1.4;
     }
 
+    /* ===== Better mobile layout fixes ===== */
+    @media (max-width: 768px) {
+      body {
+        padding: 8px;
+        padding-bottom: 84px;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .hero {
+        margin-bottom: 10px;
+        padding: 4px 2px 0;
+      }
+
+      .hero h1 {
+        font-size: 1.25rem;
+        line-height: 1.15;
+      }
+
+      .hero p {
+        font-size: 0.8rem;
+        line-height: 1.45;
+      }
+
+      .toolbar-wrap {
+        position: static;
+        top: auto;
+        margin-bottom: 10px;
+        max-width: 100%;
+      }
+
+      .toolbar {
+        padding: 8px;
+        border-radius: 14px;
+      }
+
+      .toolbar-row {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+      }
+
+      .search-wrap {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .search-wrap input {
+        width: 100%;
+        min-height: 44px;
+        font-size: 16px;
+        padding: 11px 40px 11px 12px;
+      }
+
+      .toolbar-actions {
+        width: 100%;
+        display: flex;
+      }
+
+      .toolbar-actions .btn {
+        width: 100%;
+        min-height: 42px;
+        justify-content: center;
+      }
+
+      .search-meta {
+        margin-top: 8px;
+        padding-left: 0;
+        font-size: 0.76rem;
+        line-height: 1.4;
+      }
+
+      .suggestions {
+        max-height: 180px;
+      }
+
+      .faq-category {
+        margin-bottom: 8px;
+        border-radius: 14px;
+        padding: 6px;
+      }
+
+      .faq-category-header {
+        padding: 10px 11px;
+        font-size: 0.84rem;
+      }
+
+      .faq-question {
+        padding: 11px;
+        gap: 8px;
+      }
+
+      .question-text {
+        font-size: 0.83rem;
+        line-height: 1.35;
+      }
+
+      .question-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 0.8rem;
+      }
+
+      .faq-answer {
+        padding: 0 11px;
+      }
+
+      .faq-answer p,
+      .faq-answer ul {
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .back-to-top {
+        left: 8px;
+        bottom: 8px;
+        width: 38px;
+        height: 38px;
+        z-index: 70;
+      }
+
+      .feedback-fab {
+        right: 8px;
+        bottom: 8px;
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+        z-index: 75;
+      }
+
+      .feedback-panel {
+        right: 8px;
+        left: 8px;
+        bottom: 58px;
+        width: auto;
+        max-width: none;
+        border-radius: 14px;
+      }
+
+      .feedback-panel textarea {
+        font-size: 16px;
+      }
+    }
+
     @media (min-width: 769px) {
       body {
         padding: 14px;
@@ -645,7 +794,11 @@
             <span class="question-text">What is the difference between ePaper and traditional screens?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>E-paper, often called E Ink, uses tiny microcapsules with black and white particles that physically move to form text and images. Once the page is displayed, it does not need constant power to stay visible. LCD and OLED screens emit light directly toward your eyes and refresh many times per second to create motion and color.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>E-paper, often called E Ink, uses tiny microcapsules with black and white particles that physically move to form text and images. Once the page is displayed, it does not need constant power to stay visible. LCD and OLED screens emit light directly toward your eyes and refresh many times per second to create motion and color.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -653,7 +806,11 @@
             <span class="question-text">What is ONYX BOOX?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>ONYX is the company behind BOOX devices. They specialize in E Ink tablets and eReaders designed for reading, note-taking, and productivity.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>ONYX is the company behind BOOX devices. They specialize in E Ink tablets and eReaders designed for reading, note-taking, and productivity.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -661,7 +818,11 @@
             <span class="question-text">What's the difference between BOOX, Kindle, and other ePaper products?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Many ePaper products focus mainly on reading and are sometimes locked into a proprietary ecosystem. BOOX devices offer more flexibility through Android apps, note-taking features, wider file support, and productivity tools.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Many ePaper products focus mainly on reading and are sometimes locked into a proprietary ecosystem. BOOX devices offer more flexibility through Android apps, note-taking features, wider file support, and productivity tools.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -669,7 +830,11 @@
             <span class="question-text">How is BOOX different from a tablet or smartphone?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>BOOX devices use E Ink screens, which are generally easier on the eyes and offer better battery life for reading and writing. They are designed for focused productivity rather than gaming or video-heavy use.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>BOOX devices use E Ink screens, which are generally easier on the eyes and offer better battery life for reading and writing. They are designed for focused productivity rather than gaming or video-heavy use.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -685,7 +850,11 @@
             <span class="question-text">Can BOOX devices browse the internet?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. BOOX devices have a built-in web browser and can access websites using Wi-Fi.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. BOOX devices have a built-in web browser and can access websites using Wi-Fi.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -693,7 +862,11 @@
             <span class="question-text">Can I install apps like Spotify, YouTube, or Apple Music?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Most BOOX devices support the Google Play Store, so you can install compatible Android apps like Spotify, YouTube, or Apple Music.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. Most BOOX devices support the Google Play Store, so you can install compatible Android apps like Spotify, YouTube, or Apple Music.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -701,7 +874,11 @@
             <span class="question-text">Can I download Google Chrome?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Chrome and other supported apps can be downloaded through the Google Play Store.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. Chrome and other supported apps can be downloaded through the Google Play Store.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -709,7 +886,11 @@
             <span class="question-text">Can BOOX devices read image-heavy textbooks?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. BOOX devices can open PDFs and image-heavy textbooks. Performance may vary depending on the file size and model.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. BOOX devices can open PDFs and image-heavy textbooks. Performance may vary depending on the file size and model.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -717,7 +898,11 @@
             <span class="question-text">Can I install the Kindle app on BOOX?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. You can install the Kindle app through Google Play and read your Kindle books on BOOX devices.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. You can install the Kindle app through Google Play and read your Kindle books on BOOX devices.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -733,7 +918,18 @@
             <span class="question-text">How can I transfer books or files to my BOOX device?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>You can transfer files to your BOOX device using several methods:</p><ul><li>Email</li><li>Google Drive</li><li>USB connection</li><li>Cloud storage</li><li>Direct download from the internet</li></ul></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>You can transfer files to your BOOX device using several methods:</p>
+              <ul>
+                <li>Email</li>
+                <li>Google Drive</li>
+                <li>USB connection</li>
+                <li>Cloud storage</li>
+                <li>Direct download from the internet</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -741,7 +937,11 @@
             <span class="question-text">Can BOOX devices open files from Google Drive?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. You can access and download files from Google Drive.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. You can access and download files from Google Drive.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -749,7 +949,11 @@
             <span class="question-text">Can I read manga or manhwa on BOOX devices?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. BOOX devices support various formats suitable for manga and manhwa reading. Monochrome BOOX models are usually better for manga, while color ePaper models are often preferred for colored content such as manhwa.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. BOOX devices support various formats suitable for manga and manhwa reading. Monochrome BOOX models are usually better for manga, while color ePaper models are often preferred for colored content such as manhwa.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -765,7 +969,11 @@
             <span class="question-text">Can I write notes on BOOX devices?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Many BOOX tablets support handwritten notes using a stylus.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. Many BOOX tablets support handwritten notes using a stylus.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -773,7 +981,11 @@
             <span class="question-text">Can handwritten notes be converted into typed text?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Many BOOX devices support handwriting-to-text conversion.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. Many BOOX devices support handwriting-to-text conversion.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -781,7 +993,11 @@
             <span class="question-text">Does BOOX Palma support stylus writing?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>No. BOOX Palma is mainly an eReader and does not support stylus input.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>No. BOOX Palma is mainly an eReader and does not support stylus input.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -789,7 +1005,11 @@
             <span class="question-text">Are BOOX pens compatible with different models?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Some BOOX styluses are cross-compatible, but compatibility depends on the specific model.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Some BOOX styluses are cross-compatible, but compatibility depends on the specific model.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -805,7 +1025,11 @@
             <span class="question-text">Do BOOX devices support SIM cards?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Most BOOX devices are Wi-Fi only. Mobile connectivity depends on the exact model.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Most BOOX devices are Wi-Fi only. Mobile connectivity depends on the exact model.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -813,7 +1037,11 @@
             <span class="question-text">Can I use other Bluetooth keyboards?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. BOOX devices support Bluetooth keyboards.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes. BOOX devices support Bluetooth keyboards.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -821,7 +1049,11 @@
             <span class="question-text">Do BOOX devices have a desktop mode?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>BOOX devices do not have a built-in desktop mode like Samsung DeX or Windows tablets, but they do support productivity features that can create a desktop-like workflow.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>BOOX devices do not have a built-in desktop mode like Samsung DeX or Windows tablets, but they do support productivity features that can create a desktop-like workflow.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -837,7 +1069,11 @@
             <span class="question-text">Is there a warranty for BOOX devices?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>BOOX devices typically come with a warranty that covers factory defects, though exact terms may vary by seller or region.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>BOOX devices typically come with a warranty that covers factory defects, though exact terms may vary by seller or region.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -845,7 +1081,11 @@
             <span class="question-text">What if my device arrives defective?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Please contact the seller or distributor immediately. Replacement policies for factory defects may vary depending on where the device was purchased.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Please contact the seller or distributor immediately. Replacement policies for factory defects may vary depending on where the device was purchased.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -853,7 +1093,11 @@
             <span class="question-text">Is there a service center in the Philippines?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Local service availability may vary. For technical concerns or repair inquiries, contact: service@onyx-international.com</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Local service availability may vary. For technical concerns or repair inquiries, contact: service@onyx-international.com</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -869,7 +1113,11 @@
             <span class="question-text">Are BOOX devices water resistant?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>No. BOOX devices are generally not waterproof or dustproof.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>No. BOOX devices are generally not waterproof or dustproof.</p>
+            </div>
+          </div>
         </div>
 
         <div class="faq-item">
@@ -877,7 +1125,11 @@
             <span class="question-text">Does the device come with a screen protector?</span>
             <span class="question-icon">⌄</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Some models may include a pre-applied protective film. Extra screen protectors are generally not recommended because they may affect the E Ink writing and viewing experience.</p></div></div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Some models may include a pre-applied protective film. Extra screen protectors are generally not recommended because they may affect the E Ink writing and viewing experience.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -923,261 +1175,304 @@
       const feedbackStatus = document.getElementById("feedbackStatus");
       const sendButton = document.getElementById("sendButton");
 
-      let lastScroll = 0;
+      const APPS_SCRIPT_URL = ""; // paste your Google Apps Script Web App URL here
+
       let isSending = false;
+
+      const questionTexts = [...document.querySelectorAll(".question-text")];
+      questionTexts.forEach(el => {
+        el.dataset.original = el.textContent;
+      });
 
       function escapeRegExp(string) {
         return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       }
 
       function clearHighlights() {
-        document.querySelectorAll(".question-text").forEach(el => {
-          el.innerHTML = el.dataset.original || el.textContent;
+        questionTexts.forEach(el => {
+          el.innerHTML = el.dataset.original;
         });
       }
 
       function applyHighlight(el, term) {
         const original = el.dataset.original || el.textContent;
-        el.dataset.original = original;
-
         if (!term.trim()) {
           el.innerHTML = original;
           return;
         }
-
-        const regex = new RegExp(`(${escapeRegExp(term)})`, "gi");
+        const regex = new RegExp("(" + escapeRegExp(term) + ")", "gi");
         el.innerHTML = original.replace(regex, "<mark>$1</mark>");
       }
 
-      function closeAllFaqs() {
-        faqItems.forEach(item => item.classList.remove("active"));
+      function closeItem(item) {
+        const answer = item.querySelector(".faq-answer");
+        item.classList.remove("active");
+        answer.style.maxHeight = "0px";
       }
 
-      function openFaq(item) {
-        closeAllFaqs();
+      function openItem(item) {
+        const answer = item.querySelector(".faq-answer");
         item.classList.add("active");
+        answer.style.maxHeight = answer.scrollHeight + "px";
       }
 
-      function expandAllCategories() {
-        categories.forEach(category => category.classList.remove("collapsed"));
-      }
-
-      function refreshCategoryVisibility() {
-        categories.forEach(category => {
-          const visibleItems = category.querySelectorAll(".faq-item:not(.hidden)");
-          category.style.display = visibleItems.length ? "block" : "none";
+      function toggleItem(item) {
+        const isActive = item.classList.contains("active");
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) closeItem(otherItem);
         });
-      }
-
-      function resetFaqView() {
-        searchInput.value = "";
-        suggestionBox.innerHTML = "";
-        suggestionBox.style.display = "none";
-        clearInputBtn.style.display = "none";
-        searchMeta.textContent = "Browse by category or search for a question.";
-        noResults.style.display = "none";
-
-        faqItems.forEach(item => {
-          item.classList.remove("hidden");
-          item.classList.remove("active");
-        });
-
-        clearHighlights();
-
-        categories.forEach(category => {
-          category.classList.remove("collapsed");
-          category.style.display = "block";
-        });
-      }
-
-      function updateSearchResults(term) {
-        const query = term.trim().toLowerCase();
-        suggestionBox.innerHTML = "";
-        clearHighlights();
-
-        if (!query) {
-          resetFaqView();
-          return;
+        if (isActive) {
+          closeItem(item);
+        } else {
+          openItem(item);
         }
-
-        clearInputBtn.style.display = "block";
-        expandAllCategories();
-        closeAllFaqs();
-
-        let matches = 0;
-
-        faqItems.forEach(item => {
-          const questionTextEl = item.querySelector(".question-text");
-          const questionText = questionTextEl.dataset.original || questionTextEl.textContent;
-          const answerText = item.querySelector(".faq-answer").textContent;
-
-          const matched =
-            questionText.toLowerCase().includes(query) ||
-            answerText.toLowerCase().includes(query);
-
-          if (matched) {
-            item.classList.remove("hidden");
-            applyHighlight(questionTextEl, term);
-            matches++;
-
-            const suggestion = document.createElement("div");
-            suggestion.textContent = questionText;
-            suggestion.addEventListener("click", () => {
-              suggestionBox.style.display = "none";
-              suggestionBox.innerHTML = "";
-              openFaq(item);
-              item.scrollIntoView({ behavior: "smooth", block: "center" });
-            });
-            suggestionBox.appendChild(suggestion);
-          } else {
-            item.classList.add("hidden");
-          }
-        });
-
-        refreshCategoryVisibility();
-        suggestionBox.style.display = suggestionBox.children.length ? "block" : "none";
-        noResults.style.display = matches ? "none" : "block";
-        searchMeta.textContent = matches
-          ? `${matches} matching question${matches > 1 ? "s" : ""} found.`
-          : "No matching questions found.";
       }
 
       faqQuestions.forEach(question => {
-        question.addEventListener("click", () => {
-          const item = question.closest(".faq-item");
-          const isActive = item.classList.contains("active");
-          closeAllFaqs();
-          if (!isActive) item.classList.add("active");
+        question.addEventListener("click", function () {
+          const item = this.closest(".faq-item");
+          toggleItem(item);
         });
       });
 
       categories.forEach(category => {
         const header = category.querySelector(".faq-category-header");
-        header.addEventListener("click", () => {
+        header.addEventListener("click", function () {
           category.classList.toggle("collapsed");
         });
       });
 
-      searchInput.addEventListener("input", () => {
-        updateSearchResults(searchInput.value);
-      });
-
-      searchInput.addEventListener("focus", () => {
-        toolbarWrap.classList.remove("collapsed");
-        toolbarArrow.textContent = "▲";
-        if (suggestionBox.children.length) {
-          suggestionBox.style.display = "block";
-        }
-      });
-
-      clearInputBtn.addEventListener("click", () => {
-        resetFaqView();
-        searchInput.focus();
-      });
-
-      showAllBtn.addEventListener("click", () => {
-        resetFaqView();
-      });
-
-      toolbarToggle.addEventListener("click", () => {
-        toolbarWrap.classList.toggle("collapsed");
-        toolbarArrow.textContent = toolbarWrap.classList.contains("collapsed") ? "▼" : "▲";
-      });
-
-      document.addEventListener("click", e => {
-        if (!e.target.closest(".search-wrap")) {
-          suggestionBox.style.display = "none";
-        }
-
-        if (!e.target.closest("#feedbackPanel") && !e.target.closest("#feedbackFab")) {
-          feedbackPanel.classList.remove("open");
-        }
-      });
-
-      feedbackFab.addEventListener("click", () => {
-        feedbackPanel.classList.toggle("open");
-      });
-
-      feedbackClose.addEventListener("click", () => {
-        feedbackPanel.classList.remove("open");
-      });
-
-      function autoResizeTextarea(el) {
-        el.style.height = "auto";
-        el.style.height = Math.min(el.scrollHeight, 180) + "px";
+      function getAllQuestions() {
+        return [...document.querySelectorAll(".faq-item .question-text")].map(el => el.dataset.original);
       }
 
-      feedbackMessage.addEventListener("input", () => {
-        autoResizeTextarea(feedbackMessage);
-      });
-
-      sendButton.addEventListener("click", async () => {
-        if (isSending) return;
-
-        const message = feedbackMessage.value.trim();
-
-        if (!message) {
-          feedbackStatus.textContent = "Please enter a question first.";
+      function updateSuggestions(matches) {
+        suggestionBox.innerHTML = "";
+        if (!matches.length || !searchInput.value.trim()) {
+          suggestionBox.style.display = "none";
           return;
         }
 
-        isSending = true;
-        sendButton.disabled = true;
-        sendButton.textContent = "Sending...";
-        feedbackStatus.textContent = "";
-
-        try {
-          await fetch("https://script.google.com/macros/s/AKfycbxdx5XwDkyzwl6UmZkdtrYWOyHemDBbBfsGkhffeqUZfB_YN7nbKhU0OJSo192y6GDR/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message })
+        matches.slice(0, 6).forEach(text => {
+          const div = document.createElement("div");
+          div.textContent = text;
+          div.addEventListener("click", function () {
+            searchInput.value = text;
+            runSearch();
+            suggestionBox.style.display = "none";
           });
+          suggestionBox.appendChild(div);
+        });
 
-          feedbackStatus.textContent = "Thank you! Your message has been sent.";
-          feedbackMessage.value = "";
-          feedbackMessage.style.height = "auto";
-          setTimeout(() => {
-            feedbackPanel.classList.remove("open");
-            feedbackStatus.textContent = "";
-          }, 1200);
-        } catch (error) {
-          feedbackStatus.textContent = "Something went wrong. Try again.";
-        } finally {
-          isSending = false;
-          sendButton.disabled = false;
-          sendButton.textContent = "Send";
+        suggestionBox.style.display = "block";
+      }
+
+      function runSearch() {
+        const term = searchInput.value.trim().toLowerCase();
+        clearHighlights();
+
+        let visibleCount = 0;
+        let visibleCategories = 0;
+
+        clearInputBtn.style.display = term ? "block" : "none";
+
+        faqItems.forEach(item => {
+          const questionTextEl = item.querySelector(".question-text");
+          const answerText = item.querySelector(".faq-answer").textContent.toLowerCase();
+          const questionText = questionTextEl.dataset.original.toLowerCase();
+
+          const matched = !term || questionText.includes(term) || answerText.includes(term);
+
+          item.classList.toggle("hidden", !matched);
+
+          if (matched) {
+            visibleCount++;
+            applyHighlight(questionTextEl, term);
+          } else {
+            closeItem(item);
+          }
+        });
+
+        categories.forEach(category => {
+          const visibleItems = category.querySelectorAll(".faq-item:not(.hidden)");
+          const shouldShow = visibleItems.length > 0;
+          category.style.display = shouldShow ? "block" : "none";
+          if (shouldShow) visibleCategories++;
+
+          if (term && shouldShow) {
+            category.classList.remove("collapsed");
+          }
+        });
+
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+
+        if (!term) {
+          searchMeta.textContent = "Browse by category or search for a question.";
+        } else if (visibleCount === 0) {
+          searchMeta.textContent = 'No results found for "' + searchInput.value.trim() + '".';
+        } else {
+          searchMeta.textContent = visibleCount + " matching question" + (visibleCount > 1 ? "s" : "") + " found in " + visibleCategories + " categor" + (visibleCategories > 1 ? "ies" : "y") + ".";
+        }
+
+        const allQuestions = getAllQuestions();
+        const suggestionMatches = allQuestions.filter(q => q.toLowerCase().includes(term));
+        updateSuggestions(suggestionMatches);
+      }
+
+      searchInput.addEventListener("input", runSearch);
+
+      searchInput.addEventListener("focus", function () {
+        if (this.value.trim()) runSearch();
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".search-wrap")) {
+          suggestionBox.style.display = "none";
         }
       });
 
-      window.addEventListener("scroll", () => {
+      clearInputBtn.addEventListener("click", function () {
+        searchInput.value = "";
+        clearInputBtn.style.display = "none";
+        suggestionBox.style.display = "none";
+        clearHighlights();
+
+        faqItems.forEach(item => {
+          item.classList.remove("hidden");
+          closeItem(item);
+        });
+
+        categories.forEach(category => {
+          category.style.display = "block";
+        });
+
+        noResults.style.display = "none";
+        searchMeta.textContent = "Browse by category or search for a question.";
+      });
+
+      showAllBtn.addEventListener("click", function () {
+        searchInput.value = "";
+        clearInputBtn.style.display = "none";
+        suggestionBox.style.display = "none";
+        clearHighlights();
+
+        categories.forEach(category => {
+          category.style.display = "block";
+          category.classList.remove("collapsed");
+        });
+
+        faqItems.forEach(item => {
+          item.classList.remove("hidden");
+          closeItem(item);
+        });
+
+        noResults.style.display = "none";
+        searchMeta.textContent = "Showing all FAQ entries.";
+      });
+
+      toolbarToggle.addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
+          toolbarWrap.classList.toggle("collapsed");
+          toolbarArrow.textContent = toolbarWrap.classList.contains("collapsed") ? "▼" : "▲";
+        }
+      });
+
+      function handleInitialToolbarState() {
+        if (window.innerWidth <= 768) {
+          toolbarWrap.classList.add("collapsed");
+          toolbarArrow.textContent = "▼";
+        } else {
+          toolbarWrap.classList.remove("collapsed");
+          toolbarArrow.textContent = "▲";
+        }
+      }
+
+      window.addEventListener("resize", function () {
+        handleInitialToolbarState();
+
+        faqItems.forEach(item => {
+          if (item.classList.contains("active")) {
+            const answer = item.querySelector(".faq-answer");
+            answer.style.maxHeight = answer.scrollHeight + "px";
+          }
+        });
+      });
+
+      handleInitialToolbarState();
+
+      window.addEventListener("scroll", function () {
         if (window.scrollY > 260) {
           backToTop.classList.add("show");
         } else {
           backToTop.classList.remove("show");
         }
-
-        if (window.innerWidth <= 768) {
-          const currentScroll = window.scrollY;
-
-          if (currentScroll > lastScroll && currentScroll > 120) {
-            toolbarWrap.classList.add("collapsed");
-            toolbarArrow.textContent = "▼";
-            suggestionBox.style.display = "none";
-          }
-
-          lastScroll = currentScroll;
-        }
       });
 
-      backToTop.addEventListener("click", () => {
+      backToTop.addEventListener("click", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
-      document.querySelectorAll(".question-text").forEach(el => {
-        el.dataset.original = el.textContent;
+      feedbackFab.addEventListener("click", function () {
+        feedbackPanel.classList.toggle("open");
+        feedbackStatus.textContent = "";
+      });
+
+      feedbackClose.addEventListener("click", function () {
+        feedbackPanel.classList.remove("open");
+        feedbackStatus.textContent = "";
+      });
+
+      document.addEventListener("click", function (e) {
+        const clickedInsidePanel = feedbackPanel.contains(e.target);
+        const clickedFab = feedbackFab.contains(e.target);
+        if (!clickedInsidePanel && !clickedFab) {
+          feedbackPanel.classList.remove("open");
+        }
+      });
+
+      sendButton.addEventListener("click", async function () {
+        const message = feedbackMessage.value.trim();
+
+        if (!message) {
+          feedbackStatus.textContent = "Please type a question or suggestion first.";
+          return;
+        }
+
+        if (isSending) return;
+        isSending = true;
+        sendButton.disabled = true;
+        feedbackStatus.textContent = "Sending...";
+
+        try {
+          if (!APPS_SCRIPT_URL) {
+            feedbackStatus.textContent = "Your form is working visually, but you still need to paste your Google Apps Script URL in the code.";
+            return;
+          }
+
+          const response = await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              message: message,
+              page: "BOOX FAQ",
+              submittedAt: new Date().toISOString()
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error("Request failed");
+          }
+
+          feedbackMessage.value = "";
+          feedbackStatus.textContent = "Thank you. Your question has been sent.";
+        } catch (error) {
+          feedbackStatus.textContent = "Could not send right now. Please try again.";
+        } finally {
+          isSending = false;
+          sendButton.disabled = false;
+        }
       });
     });
   </script>
