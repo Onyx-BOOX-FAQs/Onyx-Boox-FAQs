@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -105,6 +106,8 @@
       cursor: pointer;
       backdrop-filter: blur(10px);
       color: var(--accent);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .toolbar {
@@ -171,6 +174,10 @@
       cursor: pointer;
       display: none;
       font-size: 0.85rem;
+      z-index: 2;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      pointer-events: auto;
     }
 
     .clear-input-btn:hover {
@@ -196,6 +203,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      pointer-events: auto;
     }
 
     .btn-secondary {
@@ -224,6 +234,10 @@
       backdrop-filter: blur(10px);
     }
 
+    .suggestions.show {
+      display: block;
+    }
+
     .suggestions div {
       padding: 10px 12px;
       cursor: pointer;
@@ -231,6 +245,8 @@
       color: var(--text);
       font-size: 0.87rem;
       line-height: 1.4;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .suggestions div:last-child {
@@ -286,6 +302,9 @@
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      pointer-events: auto;
     }
 
     .faq-category-header .arrow {
@@ -342,6 +361,11 @@
       justify-content: space-between;
       gap: 10px;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      pointer-events: auto;
+      position: relative;
+      z-index: 1;
     }
 
     .question-text {
@@ -350,6 +374,7 @@
       font-weight: 650;
       line-height: 1.4;
       word-break: break-word;
+      pointer-events: none;
     }
 
     .question-icon {
@@ -365,6 +390,7 @@
       font-size: 0.88rem;
       font-weight: 700;
       transition: 0.2s ease;
+      pointer-events: none;
     }
 
     .faq-item.active .question-icon {
@@ -401,7 +427,12 @@
     }
 
     mark {
-      background: linear-gradient(transparent 20%, rgba(250, 204, 21, 0.55) 20%, rgba(250, 204, 21, 0.55) 85%, transparent 85%);
+      background: linear-gradient(
+        transparent 20%,
+        rgba(250, 204, 21, 0.55) 20%,
+        rgba(250, 204, 21, 0.55) 85%,
+        transparent 85%
+      );
       color: inherit;
       padding: 0;
       border-radius: 0;
@@ -422,6 +453,8 @@
       box-shadow: var(--shadow-md);
       z-index: 70;
       font-size: 0.9rem;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .back-to-top.show {
@@ -443,6 +476,8 @@
       cursor: pointer;
       box-shadow: var(--shadow-lg);
       z-index: 75;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .feedback-panel {
@@ -458,6 +493,7 @@
       overflow: hidden;
       z-index: 76;
       display: none;
+      pointer-events: auto;
     }
 
     .feedback-panel.open {
@@ -482,6 +518,8 @@
       font-size: 1rem;
       cursor: pointer;
       padding: 2px 6px;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .feedback-panel-body {
@@ -518,6 +556,8 @@
       font-size: 0.86rem;
       font-weight: 700;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .feedback-send:disabled {
@@ -749,7 +789,39 @@
   </style>
 </head>
 <body>
-  <div class="faq-category" data-category>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-badge">BOOX Support • Smart FAQ Experience</div>
+      <h1>BOOX Frequently Asked Questions</h1>
+      <p>Find quick answers about BOOX devices, reading, apps, note-taking, transfers, and support in a cleaner, lighter mobile help center.</p>
+    </div>
+
+    <div class="toolbar-wrap" id="toolbarWrap">
+      <div class="toolbar-toggle" id="toolbarToggle">
+        <span>Search FAQs</span>
+        <span id="toolbarArrow">▲</span>
+      </div>
+
+      <div class="toolbar" id="toolbar">
+        <div class="toolbar-row">
+          <div class="search-wrap">
+            <input id="faqSearch" type="text" placeholder="Search questions or keywords..." aria-label="Search FAQ questions">
+            <button id="clearInputBtn" class="clear-input-btn" type="button" aria-label="Clear search">✕</button>
+            <div id="searchSuggestions" class="suggestions"></div>
+          </div>
+
+          <div class="toolbar-actions">
+            <button id="showAllBtn" class="btn btn-secondary" type="button">Show All</button>
+          </div>
+        </div>
+
+        <div id="searchMeta" class="search-meta">Browse by category or search for a question.</div>
+      </div>
+    </div>
+
+    <div id="noResults" class="no-results">No matching questions found. Try a different keyword.</div>
+
+    <div class="faq-category" data-category>
       <button class="faq-category-header" type="button">
         <span>General Questions</span>
         <span class="arrow">⌄</span>
@@ -953,7 +1025,6 @@
             </div>
           </div>
         </div>
-    <!-- Keep your existing FAQ content here exactly as-is -->
 
         <div class="faq-item">
           <button class="faq-question" type="button">
@@ -1101,381 +1172,406 @@
       </div>
     </div>
   </div>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+  <button id="feedbackFab" class="feedback-fab" type="button" aria-label="Ask a question">?</button>
+
+  <div id="feedbackPanel" class="feedback-panel">
+    <div class="feedback-panel-header">
+      <span>Ask a Question</span>
+      <button id="feedbackClose" class="feedback-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="feedback-panel-body">
+      <textarea id="feedbackMessage" placeholder="Type your question or suggestion..."></textarea>
+      <button id="sendButton" class="feedback-send" type="button">Send</button>
+      <p id="feedbackStatus" class="feedback-status"></p>
+    </div>
   </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const faqItems = document.querySelectorAll(".faq-item");
-    const faqQuestions = document.querySelectorAll(".faq-question");
-    const categories = document.querySelectorAll("[data-category]");
-    const searchInput = document.getElementById("faqSearch");
-    const suggestionBox = document.getElementById("searchSuggestions");
-    const searchMeta = document.getElementById("searchMeta");
-    const noResults = document.getElementById("noResults");
-    const showAllBtn = document.getElementById("showAllBtn");
-    const clearInputBtn = document.getElementById("clearInputBtn");
-    const backToTop = document.getElementById("backToTop");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const faqItems = document.querySelectorAll(".faq-item");
+      const faqQuestions = document.querySelectorAll(".faq-question");
+      const categories = document.querySelectorAll("[data-category]");
+      const searchInput = document.getElementById("faqSearch");
+      const suggestionBox = document.getElementById("searchSuggestions");
+      const searchMeta = document.getElementById("searchMeta");
+      const noResults = document.getElementById("noResults");
+      const showAllBtn = document.getElementById("showAllBtn");
+      const clearInputBtn = document.getElementById("clearInputBtn");
+      const backToTop = document.getElementById("backToTop");
 
-    const toolbarWrap = document.getElementById("toolbarWrap");
-    const toolbarToggle = document.getElementById("toolbarToggle");
-    const toolbarArrow = document.getElementById("toolbarArrow");
+      const toolbarWrap = document.getElementById("toolbarWrap");
+      const toolbarToggle = document.getElementById("toolbarToggle");
+      const toolbarArrow = document.getElementById("toolbarArrow");
 
-    const feedbackFab = document.getElementById("feedbackFab");
-    const feedbackPanel = document.getElementById("feedbackPanel");
-    const feedbackClose = document.getElementById("feedbackClose");
-    const feedbackMessage = document.getElementById("feedbackMessage");
-    const feedbackStatus = document.getElementById("feedbackStatus");
-    const sendButton = document.getElementById("sendButton");
+      const feedbackFab = document.getElementById("feedbackFab");
+      const feedbackPanel = document.getElementById("feedbackPanel");
+      const feedbackClose = document.getElementById("feedbackClose");
+      const feedbackMessage = document.getElementById("feedbackMessage");
+      const feedbackStatus = document.getElementById("feedbackStatus");
+      const sendButton = document.getElementById("sendButton");
 
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkmq7C-lohh2zBogQnldPDsyBYtbRH8xPPvNQGJeSzVhjNdQZbNCy4McDOIZ1G2TPU/exec";
+      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkmq7C-lohh2zBogQnldPDsyBYtbRH8xPPvNQGJeSzVhjNdQZbNCy4McDOIZ1G2TPU/exec";
 
-    let isSending = false;
+      let isSending = false;
 
-    const questionTexts = [...document.querySelectorAll(".question-text")];
-    questionTexts.forEach((el) => {
-      el.dataset.original = el.textContent;
-    });
-
-    function escapeRegExp(string) {
-      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-
-    function clearHighlights() {
+      const questionTexts = [...document.querySelectorAll(".question-text")];
       questionTexts.forEach((el) => {
-        el.innerHTML = el.dataset.original;
+        el.dataset.original = el.textContent;
       });
-    }
 
-    function applyHighlight(el, term) {
-      const original = el.dataset.original || el.textContent;
-      if (!term.trim()) {
-        el.innerHTML = original;
-        return;
+      function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       }
 
-      const regex = new RegExp("(" + escapeRegExp(term) + ")", "gi");
-      el.innerHTML = original.replace(regex, "<mark>$1</mark>");
-    }
-
-    function closeItem(item) {
-      const answer = item.querySelector(".faq-answer");
-      if (!answer) return;
-      item.classList.remove("active");
-      answer.style.maxHeight = "0px";
-    }
-
-    function openItem(item) {
-      const answer = item.querySelector(".faq-answer");
-      if (!answer) return;
-      item.classList.add("active");
-      answer.style.maxHeight = answer.scrollHeight + "px";
-    }
-
-    function toggleItem(item) {
-      const isActive = item.classList.contains("active");
-
-      faqItems.forEach((otherItem) => {
-        if (otherItem !== item) closeItem(otherItem);
-      });
-
-      if (isActive) {
-        closeItem(item);
-      } else {
-        openItem(item);
-      }
-    }
-
-    faqQuestions.forEach((question) => {
-      question.addEventListener("click", function () {
-        const item = this.closest(".faq-item");
-        if (item) toggleItem(item);
-      });
-    });
-
-    categories.forEach((category) => {
-      const header = category.querySelector(".faq-category-header");
-      if (!header) return;
-
-      header.addEventListener("click", function () {
-        category.classList.toggle("collapsed");
-      });
-    });
-
-    function getAllQuestions() {
-      return [...document.querySelectorAll(".faq-item .question-text")].map(
-        (el) => el.dataset.original || el.textContent
-      );
-    }
-
-    function updateSuggestions(matches) {
-      suggestionBox.innerHTML = "";
-
-      if (!matches.length || !searchInput.value.trim()) {
-        suggestionBox.style.display = "none";
-        return;
-      }
-
-      matches.slice(0, 6).forEach((text) => {
-        const div = document.createElement("div");
-        div.textContent = text;
-        div.addEventListener("click", function () {
-          searchInput.value = text;
-          runSearch();
-          suggestionBox.style.display = "none";
+      function clearHighlights() {
+        questionTexts.forEach((el) => {
+          el.innerHTML = el.dataset.original;
         });
-        suggestionBox.appendChild(div);
-      });
+      }
 
-      suggestionBox.style.display = "block";
-    }
+      function applyHighlight(el, term) {
+        const original = el.dataset.original || el.textContent;
+        if (!term.trim()) {
+          el.innerHTML = original;
+          return;
+        }
 
-    function runSearch() {
-      const rawTerm = searchInput.value.trim();
-      const term = rawTerm.toLowerCase();
-      clearHighlights();
+        const regex = new RegExp("(" + escapeRegExp(term) + ")", "gi");
+        el.innerHTML = original.replace(regex, "<mark>$1</mark>");
+      }
 
-      let visibleCount = 0;
-      let visibleCategories = 0;
+      function closeItem(item) {
+        const answer = item.querySelector(".faq-answer");
+        if (!answer) return;
+        item.classList.remove("active");
+        answer.style.maxHeight = "0px";
+      }
 
-      clearInputBtn.style.display = term ? "block" : "none";
+      function openItem(item) {
+        const answer = item.querySelector(".faq-answer");
+        if (!answer) return;
+        item.classList.add("active");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
 
-      faqItems.forEach((item) => {
-        const questionTextEl = item.querySelector(".question-text");
-        const answerEl = item.querySelector(".faq-answer");
+      function toggleItem(item) {
+        const isActive = item.classList.contains("active");
 
-        if (!questionTextEl || !answerEl) return;
+        faqItems.forEach((otherItem) => {
+          if (otherItem !== item) closeItem(otherItem);
+        });
 
-        const answerText = answerEl.textContent.toLowerCase();
-        const questionText = (questionTextEl.dataset.original || questionTextEl.textContent).toLowerCase();
-
-        const matched = !term || questionText.includes(term) || answerText.includes(term);
-
-        item.classList.toggle("hidden", !matched);
-
-        if (matched) {
-          visibleCount++;
-          applyHighlight(questionTextEl, rawTerm);
-        } else {
+        if (isActive) {
           closeItem(item);
+        } else {
+          openItem(item);
         }
+      }
+
+      faqQuestions.forEach((question) => {
+        question.addEventListener("click", function () {
+          const item = this.closest(".faq-item");
+          if (item) toggleItem(item);
+        });
+
+        question.addEventListener("touchstart", function () {}, { passive: true });
       });
 
       categories.forEach((category) => {
-        const visibleItems = category.querySelectorAll(".faq-item:not(.hidden)");
-        const shouldShow = visibleItems.length > 0;
-        category.style.display = shouldShow ? "block" : "none";
+        const header = category.querySelector(".faq-category-header");
+        if (!header) return;
 
-        if (shouldShow) visibleCategories++;
+        header.addEventListener("click", function () {
+          category.classList.toggle("collapsed");
+        });
 
-        if (term && shouldShow) {
-          category.classList.remove("collapsed");
+        header.addEventListener("touchstart", function () {}, { passive: true });
+      });
+
+      function getAllQuestions() {
+        return [...document.querySelectorAll(".faq-item .question-text")].map(
+          (el) => el.dataset.original || el.textContent
+        );
+      }
+
+      function updateSuggestions(matches) {
+        suggestionBox.innerHTML = "";
+
+        if (!matches.length || !searchInput.value.trim()) {
+          suggestionBox.classList.remove("show");
+          return;
+        }
+
+        matches.slice(0, 6).forEach((text) => {
+          const div = document.createElement("div");
+          div.textContent = text;
+          div.addEventListener("click", function () {
+            searchInput.value = text;
+            runSearch();
+            suggestionBox.classList.remove("show");
+          });
+          suggestionBox.appendChild(div);
+        });
+
+        suggestionBox.classList.add("show");
+      }
+
+      function runSearch() {
+        const rawTerm = searchInput.value.trim();
+        const term = rawTerm.toLowerCase();
+        clearHighlights();
+
+        let visibleCount = 0;
+        let visibleCategories = 0;
+
+        clearInputBtn.style.display = term ? "block" : "none";
+
+        faqItems.forEach((item) => {
+          const questionTextEl = item.querySelector(".question-text");
+          const answerEl = item.querySelector(".faq-answer");
+
+          if (!questionTextEl || !answerEl) return;
+
+          const answerText = answerEl.textContent.toLowerCase();
+          const questionText = (questionTextEl.dataset.original || questionTextEl.textContent).toLowerCase();
+
+          const matched = !term || questionText.includes(term) || answerText.includes(term);
+
+          item.classList.toggle("hidden", !matched);
+
+          if (matched) {
+            visibleCount++;
+            applyHighlight(questionTextEl, rawTerm);
+          } else {
+            closeItem(item);
+          }
+        });
+
+        categories.forEach((category) => {
+          const visibleItems = category.querySelectorAll(".faq-item:not(.hidden)");
+          const shouldShow = visibleItems.length > 0;
+          category.style.display = shouldShow ? "block" : "none";
+
+          if (shouldShow) visibleCategories++;
+
+          if (term && shouldShow) {
+            category.classList.remove("collapsed");
+          }
+        });
+
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+
+        if (!term) {
+          searchMeta.textContent = "Browse by category or search for a question.";
+        } else if (visibleCount === 0) {
+          searchMeta.textContent = 'No results found for "' + rawTerm + '".';
+        } else {
+          searchMeta.textContent =
+            visibleCount +
+            " matching question" +
+            (visibleCount > 1 ? "s" : "") +
+            " found in " +
+            visibleCategories +
+            " categor" +
+            (visibleCategories > 1 ? "ies" : "y") +
+            ".";
+        }
+
+        const allQuestions = getAllQuestions();
+        const suggestionMatches = allQuestions.filter((q) =>
+          q.toLowerCase().includes(term)
+        );
+        updateSuggestions(suggestionMatches);
+      }
+
+      searchInput.addEventListener("input", runSearch);
+
+      searchInput.addEventListener("focus", function () {
+        if (this.value.trim()) runSearch();
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".search-wrap")) {
+          suggestionBox.classList.remove("show");
         }
       });
 
-      noResults.style.display = visibleCount === 0 ? "block" : "none";
+      clearInputBtn.addEventListener("click", function () {
+        searchInput.value = "";
+        clearInputBtn.style.display = "none";
+        suggestionBox.classList.remove("show");
+        clearHighlights();
 
-      if (!term) {
+        faqItems.forEach((item) => {
+          item.classList.remove("hidden");
+          closeItem(item);
+        });
+
+        categories.forEach((category) => {
+          category.style.display = "block";
+        });
+
+        noResults.style.display = "none";
         searchMeta.textContent = "Browse by category or search for a question.";
-      } else if (visibleCount === 0) {
-        searchMeta.textContent = 'No results found for "' + rawTerm + '".';
-      } else {
-        searchMeta.textContent =
-          visibleCount +
-          " matching question" +
-          (visibleCount > 1 ? "s" : "") +
-          " found in " +
-          visibleCategories +
-          " categor" +
-          (visibleCategories > 1 ? "ies" : "y") +
-          ".";
+      });
+
+      showAllBtn.addEventListener("click", function () {
+        searchInput.value = "";
+        clearInputBtn.style.display = "none";
+        suggestionBox.classList.remove("show");
+        clearHighlights();
+
+        categories.forEach((category) => {
+          category.style.display = "block";
+          category.classList.remove("collapsed");
+        });
+
+        faqItems.forEach((item) => {
+          item.classList.remove("hidden");
+          closeItem(item);
+        });
+
+        noResults.style.display = "none";
+        searchMeta.textContent = "Showing all FAQ entries.";
+      });
+
+      if (toolbarToggle) {
+        toolbarToggle.addEventListener("click", function () {
+          if (window.innerWidth <= 768) {
+            toolbarWrap.classList.toggle("collapsed");
+            toolbarArrow.textContent = toolbarWrap.classList.contains("collapsed") ? "▼" : "▲";
+          }
+        });
       }
 
-      const allQuestions = getAllQuestions();
-      const suggestionMatches = allQuestions.filter((q) =>
-        q.toLowerCase().includes(term)
-      );
-      updateSuggestions(suggestionMatches);
-    }
-
-    searchInput.addEventListener("input", runSearch);
-
-    searchInput.addEventListener("focus", function () {
-      if (this.value.trim()) runSearch();
-    });
-
-    document.addEventListener("click", function (e) {
-      if (!e.target.closest(".search-wrap")) {
-        suggestionBox.style.display = "none";
-      }
-    });
-
-    clearInputBtn.addEventListener("click", function () {
-      searchInput.value = "";
-      clearInputBtn.style.display = "none";
-      suggestionBox.style.display = "none";
-      clearHighlights();
-
-      faqItems.forEach((item) => {
-        item.classList.remove("hidden");
-        closeItem(item);
-      });
-
-      categories.forEach((category) => {
-        category.style.display = "block";
-      });
-
-      noResults.style.display = "none";
-      searchMeta.textContent = "Browse by category or search for a question.";
-    });
-
-    showAllBtn.addEventListener("click", function () {
-      searchInput.value = "";
-      clearInputBtn.style.display = "none";
-      suggestionBox.style.display = "none";
-      clearHighlights();
-
-      categories.forEach((category) => {
-        category.style.display = "block";
-        category.classList.remove("collapsed");
-      });
-
-      faqItems.forEach((item) => {
-        item.classList.remove("hidden");
-        closeItem(item);
-      });
-
-      noResults.style.display = "none";
-      searchMeta.textContent = "Showing all FAQ entries.";
-    });
-
-    if (toolbarToggle) {
-      toolbarToggle.addEventListener("click", function () {
+      function handleInitialToolbarState() {
         if (window.innerWidth <= 768) {
-          toolbarWrap.classList.toggle("collapsed");
-          toolbarArrow.textContent = toolbarWrap.classList.contains("collapsed") ? "▼" : "▲";
+          toolbarWrap.classList.add("collapsed");
+          toolbarArrow.textContent = "▼";
+        } else {
+          toolbarWrap.classList.remove("collapsed");
+          toolbarArrow.textContent = "▲";
         }
-      });
-    }
-
-    function handleInitialToolbarState() {
-      if (window.innerWidth <= 768) {
-        toolbarWrap.classList.add("collapsed");
-        toolbarArrow.textContent = "▼";
-      } else {
-        toolbarWrap.classList.remove("collapsed");
-        toolbarArrow.textContent = "▲";
       }
-    }
 
-    window.addEventListener("resize", function () {
+      window.addEventListener("resize", function () {
+        handleInitialToolbarState();
+
+        faqItems.forEach((item) => {
+          if (item.classList.contains("active")) {
+            const answer = item.querySelector(".faq-answer");
+            if (answer) {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+          }
+        });
+      });
+
       handleInitialToolbarState();
 
-      faqItems.forEach((item) => {
-        if (item.classList.contains("active")) {
-          const answer = item.querySelector(".faq-answer");
-          if (answer) {
-            answer.style.maxHeight = answer.scrollHeight + "px";
-          }
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 260) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
         }
       });
-    });
 
-    handleInitialToolbarState();
+      backToTop.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
 
-    window.addEventListener("scroll", function () {
-      if (window.scrollY > 260) {
-        backToTop.classList.add("show");
-      } else {
-        backToTop.classList.remove("show");
-      }
-    });
+      feedbackFab.addEventListener("click", function (e) {
+        e.stopPropagation();
+        feedbackPanel.classList.toggle("open");
+        feedbackStatus.textContent = "";
+      });
 
-    backToTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+      feedbackClose.addEventListener("click", function (e) {
+        e.stopPropagation();
+        feedbackPanel.classList.remove("open");
+        feedbackStatus.textContent = "";
+      });
 
-    feedbackFab.addEventListener("click", function (e) {
-      e.stopPropagation();
-      feedbackPanel.classList.toggle("open");
-      feedbackStatus.textContent = "";
-    });
+      feedbackPanel.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
 
-    feedbackClose.addEventListener("click", function (e) {
-      e.stopPropagation();
-      feedbackPanel.classList.remove("open");
-      feedbackStatus.textContent = "";
-    });
-
-    feedbackPanel.addEventListener("click", function (e) {
-      e.stopPropagation();
-    });
-
-    sendButton.addEventListener("click", async function (e) {
-      e.stopPropagation();
-
-      const message = feedbackMessage.value.trim();
-
-      if (!message) {
-        feedbackStatus.textContent = "Please type a question or suggestion first.";
-        feedbackStatus.style.color = "#dc2626";
-        return;
-      }
-
-      if (isSending) return;
-
-      isSending = true;
-      sendButton.disabled = true;
-      feedbackStatus.textContent = "Sending...";
-      feedbackStatus.style.color = "#2563eb";
-
-      try {
-        const response = await fetch(APPS_SCRIPT_URL, {
+      async function sendViaFetch(payload) {
+        await fetch(APPS_SCRIPT_URL, {
           method: "POST",
+          mode: "no-cors",
           headers: {
             "Content-Type": "text/plain;charset=utf-8"
           },
-          body: JSON.stringify({
-            message: message,
-            page: "BOOX FAQ",
-            submittedAt: new Date().toISOString()
-          })
+          body: JSON.stringify(payload)
         });
+      }
 
-        let result = {};
-        const responseText = await response.text();
+      function sendViaBeacon(payload) {
+        if (!navigator.sendBeacon) return false;
+        const blob = new Blob([JSON.stringify(payload)], {
+          type: "text/plain;charset=utf-8"
+        });
+        return navigator.sendBeacon(APPS_SCRIPT_URL, blob);
+      }
+
+      sendButton.addEventListener("click", async function (e) {
+        e.stopPropagation();
+
+        const message = feedbackMessage.value.trim();
+
+        if (!message) {
+          feedbackStatus.textContent = "Please type a question or suggestion first.";
+          feedbackStatus.style.color = "#dc2626";
+          return;
+        }
+
+        if (isSending) return;
+
+        isSending = true;
+        sendButton.disabled = true;
+        feedbackStatus.textContent = "Sending...";
+        feedbackStatus.style.color = "#2563eb";
+
+        const payload = {
+          message: message,
+          page: "BOOX FAQ",
+          submittedAt: new Date().toISOString()
+        };
 
         try {
-          result = responseText ? JSON.parse(responseText) : {};
-        } catch (parseError) {
-          result = { success: response.ok, raw: responseText };
+          const beaconSent = sendViaBeacon(payload);
+
+          if (!beaconSent) {
+            await sendViaFetch(payload);
+          }
+
+          feedbackMessage.value = "";
+          feedbackStatus.textContent = "Message sent.";
+          feedbackStatus.style.color = "#16a34a";
+        } catch (error) {
+          console.error("Send error:", error);
+          feedbackStatus.textContent = "Message failed to send.";
+          feedbackStatus.style.color = "#dc2626";
+        } finally {
+          isSending = false;
+          sendButton.disabled = false;
         }
+      });
 
-        if (!response.ok || (Object.prototype.hasOwnProperty.call(result, "success") && !result.success)) {
-          throw new Error(result.error || result.message || "Request failed");
+      document.addEventListener("click", function (e) {
+        const clickedInsidePanel = feedbackPanel.contains(e.target);
+        const clickedFab = feedbackFab.contains(e.target);
+
+        if (!clickedInsidePanel && !clickedFab) {
+          feedbackPanel.classList.remove("open");
         }
-
-        feedbackMessage.value = "";
-        feedbackStatus.textContent = "Message successfully sent.";
-        feedbackStatus.style.color = "#16a34a";
-      } catch (error) {
-        console.error("Send error:", error);
-        feedbackStatus.textContent = "Message failed to send.";
-        feedbackStatus.style.color = "#dc2626";
-      } finally {
-        isSending = false;
-        sendButton.disabled = false;
-      }
+      });
     });
-
-    document.addEventListener("click", function (e) {
-      const clickedInsidePanel = feedbackPanel.contains(e.target);
-      const clickedFab = feedbackFab.contains(e.target);
-
-      if (!clickedInsidePanel && !clickedFab) {
-        feedbackPanel.classList.remove("open");
-      }
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
