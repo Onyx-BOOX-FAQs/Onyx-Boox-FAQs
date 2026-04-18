@@ -1176,6 +1176,16 @@
     const sendButton = document.getElementById("sendButton");
 
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6ElOgsdIOkUX59p7aqELwtIagOEgkg9gL7nz9NyxF7SP2c4Fxy-JuwfDKFCjjASss/exec";
+     method: "POST",
+      headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+       },
+       body: JSON.stringify({
+       message: message,
+       page: "BOOX FAQ",
+       submittedAt: new Date().toISOString()
+      })
+   });
 
     let isSending = false;
 
